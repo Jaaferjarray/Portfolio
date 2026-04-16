@@ -451,6 +451,7 @@ section {
   opacity: 0;
   transition: opacity 0.3s;
   border-radius: 12px;
+  pointer-events: none;
 }
 .project-card:hover {
   border-color: rgba(100,160,255,0.25);
@@ -1068,6 +1069,10 @@ animate();
 </script>
 
 <script>
+  document.querySelectorAll('.project-card .project-links a').forEach(link => {
+    link.addEventListener('click', (e) => e.stopPropagation());
+  });
+
   document.querySelectorAll('.project-card[data-project-url]').forEach(card => {
     const openProject = () => window.open(card.dataset.projectUrl, '_blank', 'noopener');
     card.addEventListener('click', (e) => {
